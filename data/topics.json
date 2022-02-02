@@ -1,0 +1,36 @@
+{
+	"Artificial Intelligence":
+		{
+			"Artificial Intelligence": "artificial intellig\\w+, ai, automated reasoning, expert systems?, genetic algorithms?, machine intelligence, intelligent machines?, industry 4 0",
+
+			"Optimization": "back\\s?propagation, adam, loss functions?, gradient descent, gradient ascent, dynamic programming",
+
+			"Deep Learning": "deep learning, dl, deep neural net\\w+, dnn, generative adversarial, gans?, convolutional neural net\\w+, convolutional layers?, cnns?, recurrent neural net\\w+, lstm, long short term memory, gru, gated recurrent units?, auto\\s?encoder, attention mechanisms?, fully connected layers?, multi\\s?layer perceptrons?, mlps?, transfer learning, transformer architectures?, attention layers?, transformer net\\w+, encoder decoder",
+
+			"Machine Learning": "machine learning, ml, boltzmann machine, support vector, svm, regression, classification, clustering, unsupervised learning, supervised learning, reinforcement learning, semi supervised learning, self supervised learning, statistical learning, classification trees?, regression trees?, nearest neighbours?, random forests?, boosting algorithms?, gradient boosting, ensemble model, knowledge representations?, meta learning, pattern recognition, policy optimization, policy gradient, q learning, kernel machines?, bayesian machine learning, bayesian inference, principal component, factor analysis",
+
+			"Computer Vision": "computer vision, image classif\\w+, face detection, image recognition, image segmentation, object detection, object recognition, object identification, gesture recognition, pose estimation, image to text, text to image",
+
+			"NLP": "natural language processing, nlp, semantic search, sentiment analysis, machine translation, language model\\w*, word2vec, seq2seq, doc2vec, bert, topic modell?ing, text similarity, sentence similarity, entity recognition, token classification, text generation, automated text summarization, automated question answering, text classification",
+
+			"Audio AI": "speech recognition, voice recognition, text to speech, audio to audio, audio classification, voice activity detection",
+
+			"Feature Engineering": "features? extract\\w+, features? engineering",
+
+			"Other AIs": "information retrieval, tree search, search algorithms?, search tree, monte carlo, markov chains?, markov process\\w*, markov decisions?"
+		},
+
+	"Big Data":
+		{
+			"Big Data": "big data, massive data, large scale data, data centers?, data centres?, distributed file systems?, super\\s?comput\\w+, database, data storage, data sciences?, data mining",
+
+			"BD Computing": "cloud infrastructures?, cloud architectures?, cloud clients?, cloud servers?, cloud comput\\w+, cloud technolog\\w+, cluster comput\\w+, cloud storage, cyber\\s?infrastructure, data intensive computing, parallel processing, prallel computing, multi\\s?processing, graphics? processing units?, tensors? processing units?, quantum processin units?, quantum comput\\w+, dew computing, decentralized computing, dynamic clouds?, fog computing, edge computing, distributed computing, grid computing, hardware accelerat\\w+, high performance computing, inter cloud computing, multi cloud, optical computing, neuromorphic comput\\w+, on demand computing, photonic computing",
+
+			"BD Technologies": "hadoop, spark, sql, nosql, mysql, cassandra, neo[45]j, mongodb, hive, kafka, ec2, elasticsearch, aws, docker, bigtable, hbase, oracle, microsoft sql, redis, ibm db2, microsoft azure, google cloud, sqlite, mariadb, splunk, dynamodb, dbms, rdbms, nrdbms, relational database, non\\s?relational database, iaas, saas, paas"
+		},
+
+	"Robotics": 
+	{
+		"Robotics": "autonomous cars?, self driving, autonomous vehicleq?, robots?, robotics?, underwater vehicles?, auv, chatbots?, cybernetcs?, drones?, humanoid robots?, manipulators?, mobile robots?, uav, ugv, uncrewed vehicles?, unmanned aerial vehicles?, unmanned air vehicles?, unmanned aircraft, unmanned spacecraft, unmanned ground vehicle, unmanned underwater, unmanned vehicles?, 3d print\\w*"
+	}
+}
