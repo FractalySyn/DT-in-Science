@@ -1,0 +1,125 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 850px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": " Australia", "label": " Australia", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": " Austria", "label": " Austria", "shape": "dot", "size": 14}, {"font": {"color": "white"}, "id": " Belgium", "label": " Belgium", "shape": "dot", "size": 19}, {"font": {"color": "white"}, "id": " Brazil", "label": " Brazil", "shape": "dot", "size": 6}, {"font": {"color": "white"}, "id": " Canada", "label": " Canada", "shape": "dot", "size": 8}, {"font": {"color": "white"}, "id": " Denmark", "label": " Denmark", "shape": "dot", "size": 12}, {"font": {"color": "white"}, "id": " England", "label": " England", "shape": "dot", "size": 27}, {"font": {"color": "white"}, "id": " Finland", "label": " Finland", "shape": "dot", "size": 14}, {"font": {"color": "white"}, "id": " France", "label": " France", "shape": "dot", "size": 79}, {"font": {"color": "white"}, "id": " Germany", "label": " Germany", "shape": "dot", "size": 104}, {"font": {"color": "white"}, "id": " Greece", "label": " Greece", "shape": "dot", "size": 18}, {"font": {"color": "white"}, "id": " Hungary", "label": " Hungary", "shape": "dot", "size": 6}, {"font": {"color": "white"}, "id": " Ireland", "label": " Ireland", "shape": "dot", "size": 11}, {"font": {"color": "white"}, "id": " Italy", "label": " Italy", "shape": "dot", "size": 78}, {"font": {"color": "white"}, "id": " Japan", "label": " Japan", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": " Netherlands", "label": " Netherlands", "shape": "dot", "size": 28}, {"font": {"color": "white"}, "id": " Norway", "label": " Norway", "shape": "dot", "size": 9}, {"font": {"color": "white"}, "id": " Peoples R China", "label": " Peoples R China", "shape": "dot", "size": 15}, {"font": {"color": "white"}, "id": " Poland", "label": " Poland", "shape": "dot", "size": 27}, {"font": {"color": "white"}, "id": " Portugal", "label": " Portugal", "shape": "dot", "size": 22}, {"font": {"color": "white"}, "id": " Romania", "label": " Romania", "shape": "dot", "size": 18}, {"font": {"color": "white"}, "id": " Spain", "label": " Spain", "shape": "dot", "size": 66}, {"font": {"color": "white"}, "id": " Sweden", "label": " Sweden", "shape": "dot", "size": 19}, {"font": {"color": "white"}, "id": " Switzerland", "label": " Switzerland", "shape": "dot", "size": 30}, {"font": {"color": "white"}, "id": "USA", "label": "USA", "shape": "dot", "size": 46}]);
+        edges = new vis.DataSet([{"from": " Australia", "to": " Austria", "weight": 22}, {"from": " Australia", "to": " Belgium", "weight": 35}, {"from": " Australia", "to": " Brazil", "weight": 25}, {"from": " Australia", "to": " Canada", "weight": 105}, {"from": " Australia", "to": " Denmark", "weight": 35}, {"from": " Australia", "to": " England", "weight": 133}, {"from": " Australia", "to": " Finland", "weight": 14}, {"from": " Australia", "to": " France", "weight": 133}, {"from": " Australia", "to": " Germany", "weight": 238}, {"from": " Australia", "to": " Greece", "weight": 31}, {"from": " Australia", "to": " Hungary", "weight": 5}, {"from": " Australia", "to": " Ireland", "weight": 25}, {"from": " Australia", "to": " Italy", "weight": 154}, {"from": " Australia", "to": " Japan", "weight": 162}, {"from": " Australia", "to": " Netherlands", "weight": 85}, {"from": " Australia", "to": " Norway", "weight": 27}, {"from": " Australia", "to": " Peoples R China", "weight": 96}, {"from": " Australia", "to": " Poland", "weight": 58}, {"from": " Australia", "to": " Portugal", "weight": 40}, {"from": " Australia", "to": " Romania", "weight": 17}, {"from": " Australia", "to": " Spain", "weight": 129}, {"from": " Australia", "to": " Sweden", "weight": 82}, {"from": " Australia", "to": " Switzerland", "weight": 85}, {"from": " Australia", "to": "USA", "weight": 152}, {"from": " Austria", "to": " Belgium", "weight": 39}, {"from": " Austria", "to": " Brazil", "weight": 7}, {"from": " Austria", "to": " Canada", "weight": 43}, {"from": " Austria", "to": " Denmark", "weight": 11}, {"from": " Austria", "to": " England", "weight": 103}, {"from": " Austria", "to": " Finland", "weight": 8}, {"from": " Austria", "to": " France", "weight": 70}, {"from": " Austria", "to": " Germany", "weight": 227}, {"from": " Austria", "to": " Greece", "weight": 6}, {"from": " Austria", "to": " Hungary", "weight": 25}, {"from": " Austria", "to": " Italy", "weight": 76}, {"from": " Austria", "to": " Japan", "weight": 45}, {"from": " Austria", "to": " Netherlands", "weight": 27}, {"from": " Austria", "to": " Norway", "weight": 12}, {"from": " Austria", "to": " Peoples R China", "weight": 26}, {"from": " Austria", "to": " Poland", "weight": 26}, {"from": " Austria", "to": " Portugal", "weight": 14}, {"from": " Austria", "to": " Romania", "weight": 9}, {"from": " Austria", "to": " Spain", "weight": 41}, {"from": " Austria", "to": " Sweden", "weight": 19}, {"from": " Austria", "to": " Switzerland", "weight": 49}, {"from": " Austria", "to": "USA", "weight": 208}, {"from": " Belgium", "to": " Brazil", "weight": 13}, {"from": " Belgium", "to": " Canada", "weight": 24}, {"from": " Belgium", "to": " Denmark", "weight": 19}, {"from": " Belgium", "to": " England", "weight": 163}, {"from": " Belgium", "to": " Finland", "weight": 18}, {"from": " Belgium", "to": " France", "weight": 135}, {"from": " Belgium", "to": " Germany", "weight": 151}, {"from": " Belgium", "to": " Greece", "weight": 25}, {"from": " Belgium", "to": " Hungary", "weight": 10}, {"from": " Belgium", "to": " Ireland", "weight": 10}, {"from": " Belgium", "to": " Italy", "weight": 149}, {"from": " Belgium", "to": " Japan", "weight": 84}, {"from": " Belgium", "to": " Netherlands", "weight": 183}, {"from": " Belgium", "to": " Norway", "weight": 25}, {"from": " Belgium", "to": " Peoples R China", "weight": 46}, {"from": " Belgium", "to": " Poland", "weight": 11}, {"from": " Belgium", "to": " Portugal", "weight": 14}, {"from": " Belgium", "to": " Romania", "weight": 12}, {"from": " Belgium", "to": " Spain", "weight": 98}, {"from": " Belgium", "to": " Sweden", "weight": 18}, {"from": " Belgium", "to": " Switzerland", "weight": 32}, {"from": " Belgium", "to": "USA", "weight": 87}, {"from": " Brazil", "to": " Canada", "weight": 71}, {"from": " Brazil", "to": " Denmark", "weight": 10}, {"from": " Brazil", "to": " England", "weight": 87}, {"from": " Brazil", "to": " Finland", "weight": 15}, {"from": " Brazil", "to": " France", "weight": 184}, {"from": " Brazil", "to": " Germany", "weight": 145}, {"from": " Brazil", "to": " Greece", "weight": 20}, {"from": " Brazil", "to": " Hungary", "weight": 6}, {"from": " Brazil", "to": " Ireland", "weight": 3}, {"from": " Brazil", "to": " Italy", "weight": 179}, {"from": " Brazil", "to": " Japan", "weight": 109}, {"from": " Brazil", "to": " Netherlands", "weight": 39}, {"from": " Brazil", "to": " Norway", "weight": 10}, {"from": " Brazil", "to": " Peoples R China", "weight": 55}, {"from": " Brazil", "to": " Poland", "weight": 19}, {"from": " Brazil", "to": " Portugal", "weight": 98}, {"from": " Brazil", "to": " Romania", "weight": 20}, {"from": " Brazil", "to": " Spain", "weight": 107}, {"from": " Brazil", "to": " Sweden", "weight": 33}, {"from": " Brazil", "to": " Switzerland", "weight": 42}, {"from": " Brazil", "to": "USA", "weight": 30}, {"from": " Canada", "to": " Denmark", "weight": 97}, {"from": " Canada", "to": " England", "weight": 200}, {"from": " Canada", "to": " Finland", "weight": 31}, {"from": " Canada", "to": " France", "weight": 204}, {"from": " Canada", "to": " Germany", "weight": 220}, {"from": " Canada", "to": " Greece", "weight": 69}, {"from": " Canada", "to": " Hungary", "weight": 16}, {"from": " Canada", "to": " Ireland", "weight": 46}, {"from": " Canada", "to": " Italy", "weight": 250}, {"from": " Canada", "to": " Japan", "weight": 57}, {"from": " Canada", "to": " Netherlands", "weight": 119}, {"from": " Canada", "to": " Norway", "weight": 48}, {"from": " Canada", "to": " Peoples R China", "weight": 141}, {"from": " Canada", "to": " Poland", "weight": 76}, {"from": " Canada", "to": " Portugal", "weight": 95}, {"from": " Canada", "to": " Romania", "weight": 59}, {"from": " Canada", "to": " Spain", "weight": 191}, {"from": " Canada", "to": " Sweden", "weight": 81}, {"from": " Canada", "to": " Switzerland", "weight": 118}, {"from": " Canada", "to": "USA", "weight": 226}, {"from": " Denmark", "to": " England", "weight": 105}, {"from": " Denmark", "to": " Finland", "weight": 49}, {"from": " Denmark", "to": " France", "weight": 126}, {"from": " Denmark", "to": " Germany", "weight": 204}, {"from": " Denmark", "to": " Greece", "weight": 12}, {"from": " Denmark", "to": " Hungary", "weight": 13}, {"from": " Denmark", "to": " Ireland", "weight": 12}, {"from": " Denmark", "to": " Italy", "weight": 127}, {"from": " Denmark", "to": " Japan", "weight": 31}, {"from": " Denmark", "to": " Netherlands", "weight": 62}, {"from": " Denmark", "to": " Norway", "weight": 32}, {"from": " Denmark", "to": " Peoples R China", "weight": 33}, {"from": " Denmark", "to": " Poland", "weight": 15}, {"from": " Denmark", "to": " Portugal", "weight": 23}, {"from": " Denmark", "to": " Romania", "weight": 9}, {"from": " Denmark", "to": " Spain", "weight": 66}, {"from": " Denmark", "to": " Sweden", "weight": 48}, {"from": " Denmark", "to": " Switzerland", "weight": 31}, {"from": " Denmark", "to": "USA", "weight": 227}, {"from": " England", "to": " Finland", "weight": 125}, {"from": " England", "to": " France", "weight": 223}, {"from": " England", "to": " Germany", "weight": 247}, {"from": " England", "to": " Greece", "weight": 171}, {"from": " England", "to": " Hungary", "weight": 40}, {"from": " England", "to": " Ireland", "weight": 90}, {"from": " England", "to": " Italy", "weight": 183}, {"from": " England", "to": " Japan", "weight": 244}, {"from": " England", "to": " Netherlands", "weight": 146}, {"from": " England", "to": " Norway", "weight": 123}, {"from": " England", "to": " Peoples R China", "weight": 208}, {"from": " England", "to": " Poland", "weight": 94}, {"from": " England", "to": " Portugal", "weight": 197}, {"from": " England", "to": " Romania", "weight": 104}, {"from": " England", "to": " Spain", "weight": 60}, {"from": " England", "to": " Sweden", "weight": 199}, {"from": " England", "to": " Switzerland", "weight": 82}, {"from": " England", "to": "USA", "weight": 5}, {"from": " Finland", "to": " France", "weight": 122}, {"from": " Finland", "to": " Germany", "weight": 111}, {"from": " Finland", "to": " Greece", "weight": 14}, {"from": " Finland", "to": " Hungary", "weight": 17}, {"from": " Finland", "to": " Ireland", "weight": 15}, {"from": " Finland", "to": " Italy", "weight": 185}, {"from": " Finland", "to": " Japan", "weight": 24}, {"from": " Finland", "to": " Netherlands", "weight": 32}, {"from": " Finland", "to": " Norway", "weight": 19}, {"from": " Finland", "to": " Peoples R China", "weight": 84}, {"from": " Finland", "to": " Poland", "weight": 12}, {"from": " Finland", "to": " Portugal", "weight": 9}, {"from": " Finland", "to": " Romania", "weight": 4}, {"from": " Finland", "to": " Spain", "weight": 105}, {"from": " Finland", "to": " Sweden", "weight": 72}, {"from": " Finland", "to": " Switzerland", "weight": 35}, {"from": " Finland", "to": "USA", "weight": 8}, {"from": " France", "to": " Germany", "weight": 28}, {"from": " France", "to": " Greece", "weight": 121}, {"from": " France", "to": " Hungary", "weight": 29}, {"from": " France", "to": " Ireland", "weight": 65}, {"from": " France", "to": " Italy", "weight": 36}, {"from": " France", "to": " Japan", "weight": 147}, {"from": " France", "to": " Netherlands", "weight": 195}, {"from": " France", "to": " Norway", "weight": 67}, {"from": " France", "to": " Peoples R China", "weight": 145}, {"from": " France", "to": " Poland", "weight": 108}, {"from": " France", "to": " Portugal", "weight": 182}, {"from": " France", "to": " Romania", "weight": 106}, {"from": " France", "to": " Spain", "weight": 69}, {"from": " France", "to": " Sweden", "weight": 111}, {"from": " France", "to": " Switzerland", "weight": 67}, {"from": " France", "to": "USA", "weight": 250}, {"from": " Germany", "to": " Greece", "weight": 174}, {"from": " Germany", "to": " Hungary", "weight": 70}, {"from": " Germany", "to": " Ireland", "weight": 50}, {"from": " Germany", "to": " Italy", "weight": 1}, {"from": " Germany", "to": " Japan", "weight": 194}, {"from": " Germany", "to": " Netherlands", "weight": 158}, {"from": " Germany", "to": " Norway", "weight": 115}, {"from": " Germany", "to": " Peoples R China", "weight": 134}, {"from": " Germany", "to": " Poland", "weight": 141}, {"from": " Germany", "to": " Portugal", "weight": 201}, {"from": " Germany", "to": " Romania", "weight": 109}, {"from": " Germany", "to": " Spain", "weight": 243}, {"from": " Germany", "to": " Sweden", "weight": 14}, {"from": " Germany", "to": " Switzerland", "weight": 220}, {"from": " Germany", "to": "USA", "weight": 200}, {"from": " Greece", "to": " Hungary", "weight": 5}, {"from": " Greece", "to": " Ireland", "weight": 16}, {"from": " Greece", "to": " Italy", "weight": 184}, {"from": " Greece", "to": " Japan", "weight": 87}, {"from": " Greece", "to": " Netherlands", "weight": 33}, {"from": " Greece", "to": " Norway", "weight": 15}, {"from": " Greece", "to": " Peoples R China", "weight": 68}, {"from": " Greece", "to": " Poland", "weight": 25}, {"from": " Greece", "to": " Portugal", "weight": 40}, {"from": " Greece", "to": " Romania", "weight": 20}, {"from": " Greece", "to": " Spain", "weight": 104}, {"from": " Greece", "to": " Sweden", "weight": 39}, {"from": " Greece", "to": " Switzerland", "weight": 61}, {"from": " Greece", "to": "USA", "weight": 102}, {"from": " Hungary", "to": " Ireland", "weight": 1}, {"from": " Hungary", "to": " Italy", "weight": 42}, {"from": " Hungary", "to": " Japan", "weight": 28}, {"from": " Hungary", "to": " Netherlands", "weight": 8}, {"from": " Hungary", "to": " Norway", "weight": 6}, {"from": " Hungary", "to": " Peoples R China", "weight": 14}, {"from": " Hungary", "to": " Poland", "weight": 17}, {"from": " Hungary", "to": " Portugal", "weight": 18}, {"from": " Hungary", "to": " Romania", "weight": 60}, {"from": " Hungary", "to": " Spain", "weight": 21}, {"from": " Hungary", "to": " Sweden", "weight": 13}, {"from": " Hungary", "to": " Switzerland", "weight": 12}, {"from": " Hungary", "to": "USA", "weight": 115}, {"from": " Ireland", "to": " Italy", "weight": 35}, {"from": " Ireland", "to": " Japan", "weight": 35}, {"from": " Ireland", "to": " Netherlands", "weight": 18}, {"from": " Ireland", "to": " Norway", "weight": 5}, {"from": " Ireland", "to": " Peoples R China", "weight": 29}, {"from": " Ireland", "to": " Poland", "weight": 11}, {"from": " Ireland", "to": " Portugal", "weight": 5}, {"from": " Ireland", "to": " Romania", "weight": 2}, {"from": " Ireland", "to": " Spain", "weight": 42}, {"from": " Ireland", "to": " Sweden", "weight": 5}, {"from": " Ireland", "to": " Switzerland", "weight": 14}, {"from": " Ireland", "to": "USA", "weight": 66}, {"from": " Italy", "to": " Japan", "weight": 32}, {"from": " Italy", "to": " Netherlands", "weight": 36}, {"from": " Italy", "to": " Norway", "weight": 105}, {"from": " Italy", "to": " Peoples R China", "weight": 76}, {"from": " Italy", "to": " Poland", "weight": 163}, {"from": " Italy", "to": " Portugal", "weight": 17}, {"from": " Italy", "to": " Romania", "weight": 143}, {"from": " Italy", "to": " Spain", "weight": 137}, {"from": " Italy", "to": " Sweden", "weight": 192}, {"from": " Italy", "to": " Switzerland", "weight": 170}, {"from": " Italy", "to": "USA", "weight": 156}, {"from": " Japan", "to": " Netherlands", "weight": 186}, {"from": " Japan", "to": " Norway", "weight": 122}, {"from": " Japan", "to": " Peoples R China", "weight": 16}, {"from": " Japan", "to": " Poland", "weight": 136}, {"from": " Japan", "to": " Portugal", "weight": 154}, {"from": " Japan", "to": " Romania", "weight": 91}, {"from": " Japan", "to": " Spain", "weight": 81}, {"from": " Japan", "to": " Sweden", "weight": 128}, {"from": " Japan", "to": " Switzerland", "weight": 184}, {"from": " Japan", "to": "USA", "weight": 196}, {"from": " Netherlands", "to": " Norway", "weight": 36}, {"from": " Netherlands", "to": " Peoples R China", "weight": 97}, {"from": " Netherlands", "to": " Poland", "weight": 27}, {"from": " Netherlands", "to": " Portugal", "weight": 58}, {"from": " Netherlands", "to": " Romania", "weight": 28}, {"from": " Netherlands", "to": " Spain", "weight": 169}, {"from": " Netherlands", "to": " Sweden", "weight": 71}, {"from": " Netherlands", "to": " Switzerland", "weight": 80}, {"from": " Netherlands", "to": "USA", "weight": 172}, {"from": " Norway", "to": " Peoples R China", "weight": 49}, {"from": " Norway", "to": " Poland", "weight": 14}, {"from": " Norway", "to": " Portugal", "weight": 20}, {"from": " Norway", "to": " Romania", "weight": 10}, {"from": " Norway", "to": " Spain", "weight": 43}, {"from": " Norway", "to": " Sweden", "weight": 37}, {"from": " Norway", "to": " Switzerland", "weight": 23}, {"from": " Norway", "to": "USA", "weight": 246}, {"from": " Peoples R China", "to": " Poland", "weight": 63}, {"from": " Peoples R China", "to": " Portugal", "weight": 104}, {"from": " Peoples R China", "to": " Romania", "weight": 51}, {"from": " Peoples R China", "to": " Spain", "weight": 212}, {"from": " Peoples R China", "to": " Sweden", "weight": 128}, {"from": " Peoples R China", "to": " Switzerland", "weight": 96}, {"from": " Peoples R China", "to": "USA", "weight": 159}, {"from": " Poland", "to": " Portugal", "weight": 30}, {"from": " Poland", "to": " Romania", "weight": 15}, {"from": " Poland", "to": " Spain", "weight": 114}, {"from": " Poland", "to": " Sweden", "weight": 37}, {"from": " Poland", "to": " Switzerland", "weight": 44}, {"from": " Poland", "to": "USA", "weight": 34}, {"from": " Portugal", "to": " Romania", "weight": 33}, {"from": " Portugal", "to": " Spain", "weight": 199}, {"from": " Portugal", "to": " Sweden", "weight": 49}, {"from": " Portugal", "to": " Switzerland", "weight": 57}, {"from": " Portugal", "to": "USA", "weight": 1}, {"from": " Romania", "to": " Spain", "weight": 66}, {"from": " Romania", "to": " Sweden", "weight": 23}, {"from": " Romania", "to": " Switzerland", "weight": 28}, {"from": " Romania", "to": "USA", "weight": 2}, {"from": " Spain", "to": " Sweden", "weight": 126}, {"from": " Spain", "to": " Switzerland", "weight": 207}, {"from": " Spain", "to": "USA", "weight": 50}, {"from": " Sweden", "to": " Switzerland", "weight": 56}, {"from": " Sweden", "to": "USA", "weight": 189}, {"from": " Switzerland", "to": "USA", "weight": 42}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -80000,
+            "springConstant": 0.006,
+            "springLength": 250
+        },
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -1000,
+            "springConstant": 0.002,
+            "springLength": 100
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
