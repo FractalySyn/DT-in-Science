@@ -57,7 +57,7 @@ ui <- bs4DashPage(
   
   dashboardHeader(
     
-    title = "Dashboard template"
+    title = "DT in Science"
     
   ),
   
@@ -106,7 +106,7 @@ ui <- bs4DashPage(
       
       bs4SidebarMenuItem(
         
-        text = "Countries",
+        text = "Research Areas",
         tabName = "ctry"
         
       )
@@ -147,7 +147,19 @@ ui <- bs4DashPage(
       bs4TabItem(
         
         tabName = "home",
-        h2("Dashboard Home Page")
+        h3("Digital Topics in Science and Industry"),
+        p("We aim through this dashboard to make available some insights on the propagation of digital technologies in research - both in science and in the industry."),
+        h4("Contributors"),
+        p("G. Burdloff, C. Lobet, R. Mondjehi, V. Schott"),
+        tags$a(href="https://github.com/FractalySyn/DT-in-Science/tree/main/app%20autarcy/plots", "Github Repository"),
+        p(), h4("Presentation"),
+        p("This work has been performed with two datasets. The first is composed of scientific articles metadata that include digital keywords, either as a research target or as a tool for applied research. The second is the corollary for industrial research i.e. made of patents metadata. Data have been provided by M. Müller and S. Bianchini - BETA Strasbourg. Scientific papers have been obtained from Clarivate (Web of Science)."),
+        h4("Known Issues / Further Improvements"),
+        tags$ol(
+           tags$li("In Contribution and Evolution tabs,  make the plot picker more user-friendly, i.e. get rid of choosing the plot by its filename."), 
+           tags$li("Include the light versions of Overview networks (these versions exist and can be found in the Github repository). See if it loads significantly faster compared to original networks."), 
+           tags$li("Manage plots dimensions. Right now the dashboard is well displayed on a 1080p format but without borders (the browser takes some place so we lack space). For now this issue can be solved by zooming out the web page to about 80%.")
+        )
         
       ),
       
@@ -161,9 +173,10 @@ ui <- bs4DashPage(
             
             id = "overview_tab",
             selected = "Networks",
-            status = "primary",
+            status = "gray",
             solidHeader = F,
             width = 12,
+            collapsible = F,
             closable = F,
             type = "tabs",
             
@@ -178,9 +191,10 @@ ui <- bs4DashPage(
                        bs4Card(
                          
                          width = 12,
-                         title = "Network Picker",
+                         title = "Network Tuner",
                          status = "gray",
                          closable = F,
+                         collapsible = F,
                          solidHeader = T,
                          
                          br(),
@@ -238,11 +252,12 @@ ui <- bs4DashPage(
                        bs4Card(
                          
                          width = 12,
-                         title = "Wordcloud Picker",
+                         title = "Wordcloud Tuner",
                          status = "gray",
                          closable = F,
+                         collapsible = F,
                          solidHeader = T,
-
+                         
                          br(),
                          
                          radioGroupButtons(
@@ -319,10 +334,11 @@ ui <- bs4DashPage(
           tabBox(
             id = "tabcard1",
             selected = "Contribution plots",
-            status = "primary",
+            status = "gray",
             solidHeader = F,
             width = 12,
             closable = F,
+            collapsible = F,
             type = "tabs",
             
             tabPanel(
@@ -335,9 +351,10 @@ ui <- bs4DashPage(
                        bs4Card(
                          
                          width = 12,
-                         title = "Contribution Picker",
+                         title = "Contribution Tuner",
                          status = "gray",
                          closable = F,
+                         collapsible = F,
                          solidHeader = T,
                          
                          br(),
@@ -359,16 +376,16 @@ ui <- bs4DashPage(
                          br(),
                          
                          pickerInput(
-                          inputId =   "name_picker",
-                          label = "Choose a contributor",
-                          choices = NULL,
-                          options = list(
-                            `live-search` = TRUE
-                            )
-                         
-                         
-                          
-                           ),
+                           inputId =   "name_picker",
+                           label = "Choose a contributor",
+                           choices = NULL,
+                           options = list(
+                             `live-search` = TRUE
+                           )
+                           
+                           
+                           
+                         ),
                          
                          br(),
                          
@@ -378,9 +395,9 @@ ui <- bs4DashPage(
                            choices = NULL,
                            options = list(
                              `live-search` = TRUE
-                             )
-                         
-                         
+                           )
+                           
+                           
                          )
                          
                        )
@@ -398,7 +415,7 @@ ui <- bs4DashPage(
               
               
             )
-          
+            
             
           )
           
@@ -415,15 +432,16 @@ ui <- bs4DashPage(
           
           tabBox(
             id = "tabcard2",
-            selected = "DT plots",
-            status = "primary",
+            selected = "Digital Topics Popularity",
+            status = "gray",
             solidHeader = F,
             width = 12,
             closable = F,
+            collapsible = F,
             type = "tabs",
             
             tabPanel(
-              title = "DT plots",
+              title = "Digital Topics Popularity",
               
               fluidRow(
                 
@@ -437,12 +455,13 @@ ui <- bs4DashPage(
                     solidHeader = T,
                     closable = F,
                     status = "gray",
-                    title = "Picker",
+                    collapsible = F,
+                    title = "Plot Tuner",
                     
                     pickerInput(
                       
                       inputId = "DT_popularity",
-                      label = "Select atleast one popularity level",
+                      label = "Popularity level(s)",
                       choices = c("less popular","little popular","moderately popular","most popular"),
                       selected = c("less popular","little popular","moderately popular","most popular"),
                       multiple = T,
@@ -457,7 +476,7 @@ ui <- bs4DashPage(
                     pickerInput(
                       
                       inputId = "DT_topics",
-                      label = "Select topic(s)",
+                      label = "Select a Digital Topic",
                       choices = DT,
                       selected = NULL,
                       multiple = F,
@@ -470,13 +489,13 @@ ui <- bs4DashPage(
                     pickerInput(
                       
                       inputId = "DT_plot_to_display",
-                      label = "Select a plot",
+                      label = "Select a plot to display",
                       choices = NULL,
                       # selected = NULL,
                       multiple = F,
                       options = list(
                         `live-search` = T
-
+                        
                       )
                     )
                     
@@ -498,7 +517,7 @@ ui <- bs4DashPage(
                     status = "white",
                     
                     htmlOutput("evo_DT_plot")
-              
+                    
                   )
                   
                 )
@@ -510,7 +529,7 @@ ui <- bs4DashPage(
             ),
             
             tabPanel(
-              title = "ST plots",
+              title = "Digital Topics in Scientific Fields",
               
               fluidRow(
                 
@@ -524,11 +543,13 @@ ui <- bs4DashPage(
                     solidHeader = T,
                     closable = F,
                     status = "gray",
+                    collapsible = F,
+                    title = "Plot Tuner",
                     
                     pickerInput(
                       
                       inputId = "ST_popularity",
-                      label = "Select a popularity level",
+                      label = "Popularity level(s)",
                       choices = c("less popular","little popular","moderately popular","most popular"),
                       selected = c("less popular","little popular","moderately popular","most popular"),
                       multiple = T,
@@ -543,20 +564,20 @@ ui <- bs4DashPage(
                     pickerInput(
                       
                       inputId = "ST_topics",
-                      label = "Select topic(s)",
+                      label = "Select a Scientific Field",
                       choices = ST,
                       selected = NULL,
                       multiple = F,
                       options = list(
                         `live-search` = T
-
+                        
                       )
                     ),
                     
                     pickerInput(
                       
                       inputId = "ST_plot_to_display",
-                      label = "Select a plot",
+                      label = "Select a plot to display",
                       choices = NULL,
                       # selected = NULL,
                       multiple = F,
@@ -614,9 +635,10 @@ ui <- bs4DashPage(
                  bs4Card(
                    
                    width = 12,
-                   title = "Causality Plot Picker",
+                   title = "Select a domain",
                    status = "gray",
                    closable = F,
+                   collapsible = F,
                    solidHeader = T,
                    
                    br(),
@@ -651,6 +673,7 @@ ui <- bs4DashPage(
                    # title = "Heatmap displayed here",
                    status = "white",
                    closable = F,
+                   collapsible = F,
                    solidHeader = F,
                    maximizable = T,
                    
@@ -678,8 +701,9 @@ ui <- bs4DashPage(
             
             id = "countries_tab",
             selected = "Countries",
-            status = "primary",
+            status = "gray",
             solidHeader = F,
+            collapsible = F,
             width = 12,
             closable = F,
             type = "tabs",
@@ -689,19 +713,20 @@ ui <- bs4DashPage(
               title = "Countries",
               
               fluidRow(
-
+                
                 column(width = 3,
-
+                       
                        bs4Card(
-
+                         
                          width = 12,
-                         title = "Countries Picker",
+                         title = "Countries Network Tuner",
                          status = "gray",
                          closable = F,
+                         collapsible = F,
                          solidHeader = T,
-
+                         
                          br(),
-
+                         
                          pickerInput(
                            inputId = "ctry_year_picker",
                            label = "Select a Year",
@@ -710,18 +735,18 @@ ui <- bs4DashPage(
                            options = list(
                              `live-search` = TRUE)
                          )
-
-
+                         
+                         
                        )
-
+                       
                 ),
-
+                
                 column(width = 9,
-
+                       
                        uiOutput("Countries")
-
+                       
                 )
-
+                
               )
               
             ),
@@ -732,19 +757,20 @@ ui <- bs4DashPage(
               title = "Topics",
               
               fluidRow(
-
+                
                 column(width = 3,
-
+                       
                        bs4Card(
-
+                         
                          width = 12,
-                         title = "Country Topics Picker",
+                         title = "Country Topics Tuner",
                          status = "gray",
                          closable = F,
+                         collapsible = F,
                          solidHeader = T,
                          
                          br(),
-
+                         
                          pickerInput(
                            inputId = "ctry_picker",
                            label = "Select a Country",
@@ -753,18 +779,18 @@ ui <- bs4DashPage(
                            options = list(
                              `live-search` = TRUE)
                          )
-
-
+                         
+                         
                        )
-
+                       
                 ),
-
+                
                 column(width = 9,
                        
                        uiOutput("Topics")
-
+                       
                 )
-
+                
               )
               
             ),
@@ -781,9 +807,10 @@ ui <- bs4DashPage(
                        bs4Card(
                          
                          width = 12,
-                         title = "Main Topics Picker",
+                         title = "Main Topics Tuner",
                          status = "gray",
                          closable = F,
+                         collapsible = F,
                          solidHeader = T,
                          
                          br(),
@@ -873,6 +900,7 @@ server <- function(input,output,session){
       title = paste0(as.character(input$network_btn)," ",as.character(input$net_year_picker)," ","network"),
       status = "gray",
       closable = F,
+      collapsible = F,
       solidHeader = T,
       
       htmltools::includeHTML(paste0(dir,
@@ -882,7 +910,7 @@ server <- function(input,output,session){
                                     as.character(input$net_year_picker),
                                     "_",
                                     "network.html"))
-
+      
     )
     
     
@@ -947,9 +975,9 @@ server <- function(input,output,session){
       list(src = paste0(dir,"wordclouds/wc_all_year_",input$wc_year_picker,".png"), width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;")
       
     }else if(input$wc_btn == "papers"){
-    
+      
       list(src = paste0(dir,"wordclouds/wc_",as.character(input$wc_btn),"_",as.character(input$wc_btn_2),"_year_",as.character(input$wc_year_picker),".png"), width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;")
-        
+      
     }else{
       
       list(src = paste0(dir,"wordclouds/wc_",as.character(input$wc_btn),"_count_year_",as.character(input$wc_year_picker),".png"), width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;")
@@ -957,257 +985,260 @@ server <- function(input,output,session){
     }
     
   }, deleteFile = FALSE)
-    
-
-
-
   
-observeEvent(input$contrib_btn,{
   
-  updatePickerInput(
+  
+  
+  
+  observeEvent(input$contrib_btn,{
     
-    getDefaultReactiveDomain(),
-    "name_picker",
-    choices = if(input$contrib_btn == "author"){
-      authors
-    }else if(input$contrib_btn == "inventor"){
-      inventors
+    updatePickerInput(
+      
+      getDefaultReactiveDomain(),
+      "name_picker",
+      choices = if(input$contrib_btn == "author"){
+        authors
+      }else if(input$contrib_btn == "inventor"){
+        inventors
+      }else{
+        publishers
+      }
+      
+    )
+    
+  })
+  
+  observeEvent(input$name_picker,{
+    
+    
+    updatePickerInput(
+      
+      getDefaultReactiveDomain(),
+      inputId = "contrib_plot_picker",
+      choices = as.data.frame(list.files(paste0(dir,"contrib/")))%>%
+        set_colnames(c("file_name"))%>%
+        filter(grepl(input$name_picker,file_name)),
+      options = list(
+        `live-search` = TRUE
+      )
+      
+    )
+    
+  })
+  
+  output$contrib_card <- renderUI({
+    
+    bs4Card(
+      
+      width = 12,
+      # title = "Contrib plot displayed here",
+      status = "white",
+      closable = F,
+      solidHeader = F,
+      collapsible = F,
+      
+      
+      htmltools::includeHTML(paste0(dir,"contrib/",as.character(input$contrib_plot_picker)))
+      
+    )
+    
+  })
+  
+  
+  
+  toObserve <- reactive({
+    
+    list(input$DT_popularity, input$DT_topics)
+    
+  })
+  
+  
+  
+  observeEvent(toObserve(),{
+    
+    
+    updatePickerInput(
+      
+      getDefaultReactiveDomain(),
+      inputId = "DT_plot_to_display",
+      choices = as.data.frame(list.files(paste0(dir,"evo/")))%>%
+        set_colnames(c("file_name"))%>%
+        filter(grepl(input$DT_topics ,file_name))%>%
+        filter(grepl(paste(as.vector(input$DT_popularity), collapse="|"), file_name)),
+      options = list(
+        `live-search` = TRUE
+      )
+      
+    )
+    
+  })
+  
+  output$evo_DT_plot <- renderUI({
+    
+    
+    if(is.null(input$DT_popularity)){
+      
+      validate("Please make sure to select atleast one popularity level")
+      
+      
     }else{
-      publishers
+      htmltools::includeHTML(paste0(dir,"evo/",as.character(input$DT_plot_to_display)))
+      
     }
     
-  )
-  
-})
-
-observeEvent(input$name_picker,{
-  
-
-  updatePickerInput(
-    
-    getDefaultReactiveDomain(),
-    inputId = "contrib_plot_picker",
-    choices = as.data.frame(list.files(paste0(dir,"contrib/")))%>%
-      set_colnames(c("file_name"))%>%
-      filter(grepl(input$name_picker,file_name)),
-    options = list(
-      `live-search` = TRUE
-      )
-
-  )
-  
-})
-
-output$contrib_card <- renderUI({
-  
-  bs4Card(
-    
-    width = 12,
-    # title = "Contrib plot displayed here",
-    status = "white",
-    closable = F,
-    solidHeader = F,
-    collapsible = F,
     
     
-    htmltools::includeHTML(paste0(dir,"contrib/",as.character(input$contrib_plot_picker)))
+  })
+  
+  toObserve_ST <- reactive({
     
-  )
-  
-})
-
-
-
-toObserve <- reactive({
-  
-  list(input$DT_popularity, input$DT_topics)
-  
-})
-
-
-
-observeEvent(toObserve(),{
-  
-  
-  updatePickerInput(
+    list(input$ST_popularity, input$ST_topics)
     
-    getDefaultReactiveDomain(),
-    inputId = "DT_plot_to_display",
-    choices = as.data.frame(list.files(paste0(dir,"evo/")))%>%
-      set_colnames(c("file_name"))%>%
-      filter(grepl(input$DT_topics ,file_name))%>%
-      filter(grepl(paste(as.vector(input$DT_popularity), collapse="|"), file_name)),
+  })
+  
+  
+  observeEvent(toObserve_ST(),{
+    
+    
+    updatePickerInput(
+      
+      getDefaultReactiveDomain(),
+      inputId = "ST_plot_to_display",
+      choices = as.data.frame(list.files(paste0(dir,"evo/")))%>%
+        set_colnames(c("file_name"))%>%
+        filter(grepl(input$ST_topics ,file_name))%>%
+        filter(grepl(paste(as.vector(input$ST_popularity), collapse="|"), file_name)),
       options = list(
-      `live-search` = TRUE
+        `live-search` = TRUE
+      )
+      
     )
     
-  )
+  })
   
-})
-
-output$evo_DT_plot <- renderUI({
-  
-  
-  if(is.null(input$DT_popularity)){
-    
-    validate("Please make sure to select atleast one popularity level")
+  output$evo_ST_plot <- renderUI({
     
     
-  }else{
-    htmltools::includeHTML(paste0(dir,"evo/",as.character(input$DT_plot_to_display)))
+    if(is.null(input$ST_popularity)){
+      
+      validate("Please make sure to select atleast one popularity level")
+      
+      
+    }else{
+      htmltools::includeHTML(paste0(dir,"evo/",as.character(input$ST_plot_to_display)))
+      
+    }
     
-  }
-  
-  
-  
-})
-
-toObserve_ST <- reactive({
-  
-  list(input$ST_popularity, input$ST_topics)
-  
-})
-
-
-observeEvent(toObserve_ST(),{
-  
-  
-  updatePickerInput(
     
-    getDefaultReactiveDomain(),
-    inputId = "ST_plot_to_display",
-    choices = as.data.frame(list.files(paste0(dir,"evo/")))%>%
-      set_colnames(c("file_name"))%>%
-      filter(grepl(input$ST_topics ,file_name))%>%
-      filter(grepl(paste(as.vector(input$ST_popularity), collapse="|"), file_name)),
-    options = list(
-      `live-search` = TRUE
+  })
+  
+  output$causality_img <- renderUI({
+    
+    
+    if(input$causality_btn =="all"){
+      
+      tags$img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/granger_cross.jpg", width = 700, height = 390 ,style="display: block; margin-left: auto; margin-right: auto;")
+      
+    }else if(input$causality_btn == "papers"){
+      
+      tags$div(tags$img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/granger_papers.jpg", width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;"),
+               tags$img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/var_papers.jpg", width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;"))
+      
+    }else{
+      
+      tags$div(img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/granger_patents.jpg", width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;"),
+               img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/var_patents.jpg", width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;"))
+      
+    }
+    
+  })
+  
+  
+  output$Countries <- renderUI({
+    
+    req(input$countries_tab =="Countries")
+    
+    bs4Card(
+      
+      width = 12,
+      title = paste0("Countries relation in"," ",as.character(input$ctry_year_picker)),
+      status = "gray",
+      collapsible = F,
+      closable = F,
+      solidHeader = T,
+      
+      htmltools::includeHTML(paste0(dir,
+                                    "ctry_per_years/country_network",
+                                    # as.character(input$network_btn),
+                                    " ",
+                                    as.character(input$ctry_year_picker),
+                                    # "_",
+                                    ".html"))
+      
+      
+      
     )
     
-  )
-  
-})
-
-output$evo_ST_plot <- renderUI({
+    
+  })
   
   
-  if(is.null(input$ST_popularity)){
+  output$Topics <- renderUI({
     
-    validate("Please make sure to select atleast one popularity level")
+    req(input$countries_tab =="Topics")
+    
+    bs4Card(
+      
+      width = 12,
+      title = paste0("Main topics in"," ",as.character(input$ctry_picker)," ","between 2000 & 2018"),
+      status = "gray",
+      closable = F,
+      collapsible = F,
+      solidHeader = T,
+      
+      htmltools::includeHTML(paste0(dir,
+                                    "ctry_topics/main topics network in",
+                                    # as.character(input$network_btn),
+                                    "  ", #double space
+                                    as.character(input$ctry_picker),
+                                    " ",
+                                    "(2000-2018).html"))
+      
+      
+    )
     
     
-  }else{
-    htmltools::includeHTML(paste0(dir,"evo/",as.character(input$ST_plot_to_display)))
     
-  }
+  })
+  
+  output$World <- renderUI({
+    
+    req(input$countries_tab =="World")
+    
+    bs4Card(
+      
+      width = 12,
+      title = paste0("Main topics in the world in"," ",as.character(input$main_topics_year)),
+      status = "gray",
+      collapsible = F,
+      closable = F,
+      solidHeader = T,
+      
+      htmltools::includeHTML(paste0(dir,
+                                    "topics_per_years/main_topics",
+                                    # as.character(input$network_btn),
+                                    " ", #space
+                                    as.character(input$main_topics_year),
+                                    ".html"))
+      
+      
+    )
+    
+    
+    
+  })
   
   
-})
-
-output$causality_img <- renderUI({
-  
-  
-  if(input$causality_btn =="all"){
-    
-   tags$img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/granger_cross.jpg", width = 700, height = 390 ,style="display: block; margin-left: auto; margin-right: auto;")
-    
-  }else if(input$causality_btn == "papers"){
-    
-    tags$div(tags$img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/granger_papers.jpg", width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;"),
-         tags$img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/var_papers.jpg", width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;"))
-    
-  }else{
-    
-    tags$div(img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/granger_patents.jpg", width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;"),
-             img(src = "https://raw.githubusercontent.com/gbrdf/Personnal-files/main/causality/var_patents.jpg", width = 700, height = 390, style="display: block; margin-left: auto; margin-right: auto;"))
-    
-  }
-  
-})
-
-
-output$Countries <- renderUI({
-
-  req(input$countries_tab =="Countries")
-  
-  bs4Card(
-
-    width = 12,
-    title = paste0("Countries relation in"," ",as.character(input$ctry_year_picker)),
-    status = "gray",
-    closable = F,
-    solidHeader = T,
-
-    htmltools::includeHTML(paste0(dir,
-                                  "ctry_per_years/country_network",
-                                  # as.character(input$network_btn),
-                                  " ",
-                                  as.character(input$ctry_year_picker),
-                                  # "_",
-                                  ".html"))
-
-
-
-  )
-
-
-})
-
-
-output$Topics <- renderUI({
-  
-  req(input$countries_tab =="Topics")
-  
-  bs4Card(
-    
-    width = 12,
-    title = paste0("Main topics in"," ",as.character(input$ctry_picker)," ","between 2000 & 2018"),
-    status = "gray",
-    closable = F,
-    solidHeader = T,
-    
-    htmltools::includeHTML(paste0(dir,
-                                  "ctry_topics/main topics network in",
-                                  # as.character(input$network_btn),
-                                  "  ", #double space
-                                  as.character(input$ctry_picker),
-                                  " ",
-                                  "(2000-2018).html"))
-    
-    
-  )
-  
-  
-
-})
-
-output$World <- renderUI({
-  
-  req(input$countries_tab =="World")
-  
-  bs4Card(
-    
-    width = 12,
-    title = paste0("Main topics in the world in"," ",as.character(input$main_topics_year)),
-    status = "gray",
-    closable = F,
-    solidHeader = T,
-    
-    htmltools::includeHTML(paste0(dir,
-                                  "topics_per_years/main_topics",
-                                  # as.character(input$network_btn),
-                                  " ", #space
-                                  as.character(input$main_topics_year),
-                                  ".html"))
-    
-    
-  )
-  
-  
-  
-})
-
-
 }
 
 shinyApp(ui,server)
