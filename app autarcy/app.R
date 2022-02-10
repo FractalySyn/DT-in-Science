@@ -106,7 +106,7 @@ ui <- bs4DashPage(
       
       bs4SidebarMenuItem(
         
-        text = "Research Areas",
+        text = "Fields and Countries",
         tabName = "ctry"
         
       )
@@ -158,7 +158,10 @@ ui <- bs4DashPage(
         tags$ol(
            tags$li("In Contribution and Evolution tabs,  make the plot picker more user-friendly, i.e. get rid of choosing the plot by its filename."), 
            tags$li("Include the light versions of Overview networks (these versions exist and can be found in the Github repository). See if it loads significantly faster compared to original networks."), 
-           tags$li("Manage plots dimensions. Right now the dashboard is well displayed on a 1080p format but without borders (the browser takes some place so we lack space). For now this issue can be solved by zooming out the web page to about 80%.")
+           tags$li("Manage plots dimensions. Right now the dashboard is well displayed on a 1080p format but without borders (the browser takes some place so we lack space). For now this issue can be solved by zooming out the web page to about 80%."),
+           tags$li("In the Fields and Countries tab - in the sub-tabs Topics and World - the user has to manually select an option for the visualization to be loaded. The default plot does not load automatically."),
+           tags$li("In the same tab, nodes names are quite small so the user has to zoom in to see them."),
+           tags$li("In the Contributions tab, for inventors plots, several are not working because of path specification issues.")
         )
         
       ),
