@@ -18,3 +18,5 @@ More details in the PDF.
 - In the Fields and Countries tab - in the sub-tabs Topics and World - the user has to manually select an option for the visualization to be loaded. The default plot does not load automatically.
 - In the same tab, nodes names are quite small so the user has to zoom in to see them.
 - In the Contributions tab, for inventors plots, several are not working because of path specification issues.
+- The wordclouds representing both science and industry are not loading.
+- In Overview, DT networks on Science are only implemented in the 'count' form. 'Popularity' versions exist where nodes are weighted by DT popularity - still to implement.
