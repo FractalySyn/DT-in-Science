@@ -161,7 +161,9 @@ ui <- bs4DashPage(
            tags$li("Manage plots dimensions. Right now the dashboard is well displayed on a 1080p format but without borders (the browser takes some place so we lack space). For now this issue can be solved by zooming out the web page to about 80%."),
            tags$li("In the Fields and Countries tab - in the sub-tabs Topics and World - the user has to manually select an option for the visualization to be loaded. The default plot does not load automatically."),
            tags$li("In the same tab, nodes names are quite small so the user has to zoom in to see them."),
-           tags$li("In the Contributions tab, for inventors plots, several are not working because of path specification issues.")
+           tags$li("In the Contributions tab, for inventors plots, several are not working because of path specification issues."),
+           tags$li("The wordclouds representing both science and industry are not loading."),
+           tags$li("In Overview, DT networks on Science are only implemented in the 'count' form. 'Popularity' versions exist where nodes are weighted by DT popularity - still to implement.")
         )
         
       ),
